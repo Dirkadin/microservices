@@ -8,7 +8,6 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +42,8 @@ public class OrderRequestTests {
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
     assertFalse(validator.validate(orderRequest).isEmpty());
     assertTrue(validationErrors.stream().anyMatch(orderRequestConstraintViolation ->
-        orderRequestConstraintViolation.getMessage().equals("emailAddress cannot be empty or blank")));
+        orderRequestConstraintViolation.getMessage()
+            .equals("emailAddress cannot be empty or blank")));
   }
 
 }

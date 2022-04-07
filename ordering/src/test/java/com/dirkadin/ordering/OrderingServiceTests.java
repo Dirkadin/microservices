@@ -1,13 +1,5 @@
 package com.dirkadin.ordering;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -19,9 +11,6 @@ public class OrderingServiceTests {
 
   @Mock
   private OrderingService sut;
-
-//  @Captor
-//  private ArgumentCaptor<OrderRequest> orderRequestArgumentCaptor;
 
   @BeforeEach
   public void setUp() {
