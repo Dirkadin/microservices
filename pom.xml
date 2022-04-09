@@ -54,12 +54,13 @@
     </dependencies>
   </dependencyManagement>
 
-  <groupId>com.dirkaadin</groupId>
+  <groupId>com.dirkadin</groupId>
 
   <modelVersion>4.0.0</modelVersion>
 
   <modules>
     <module>ordering</module>
+    <module>api-gateway</module>
   </modules>
 
   <packaging>pom</packaging>
