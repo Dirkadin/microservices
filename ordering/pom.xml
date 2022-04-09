@@ -27,6 +27,11 @@
       <version>42.2.23</version>
       <scope>runtime</scope>
     </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+      <version>3.1.1</version>
+    </dependency>
   </dependencies>
 
   <parent>

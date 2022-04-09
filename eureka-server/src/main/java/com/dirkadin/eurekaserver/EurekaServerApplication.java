@@ -1,4 +1,4 @@
-package com.dirkadin.ordering;
+package com.dirkadin.eurekaserver;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,9 +6,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @EnableEurekaClient
 @SpringBootApplication
-public class OrderingApplication {
+public class EurekaServerApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(OrderingApplication.class, args);
+    SpringApplication.run(EurekaServerApplication.class, args);
   }
 }
