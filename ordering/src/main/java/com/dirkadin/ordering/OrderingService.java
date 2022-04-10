@@ -27,7 +27,7 @@ public class OrderingService {
     orderingRepository.saveAndFlush(order);
 
 //    if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
-    if (0 >= order.getQuantity()) {
+    if (1 >= order.getQuantity()) {
       orderingRepository.saveAndFlush(order);
     } else {
       throw new OutOfStockException("Not enough inventory");
