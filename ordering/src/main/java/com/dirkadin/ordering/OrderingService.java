@@ -21,18 +21,15 @@ public class OrderingService {
 
     //todo: validate request
     //todo: check if we have inventory
-//    InventoryCheckResponse inventoryCheckResponse = inventoryClient.inventoryCheck(
-//        orderRequest.getProductId());
+    InventoryCheckResponse inventoryCheckResponse = inventoryClient.inventoryCheck(
+        orderRequest.getProductId());
 
     orderingRepository.saveAndFlush(order);
 
-//    if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
-    if (1 >= order.getQuantity()) {
+    if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
       orderingRepository.saveAndFlush(order);
     } else {
       throw new OutOfStockException("Not enough inventory");
     }
-
-
   }
 }
