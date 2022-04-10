@@ -33,6 +33,11 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <version>2.6.5</version>
     </dependency>
+    <dependency>
+      <artifactId>spring-cloud-starter-openfeign</artifactId>
+      <groupId>org.springframework.cloud</groupId>
+      <version>3.1.1</version>
+    </dependency>
   </dependencies>
 
   <dependencyManagement>
@@ -61,6 +66,8 @@
   <modules>
     <module>ordering</module>
     <module>eureka-server</module>
+    <module>clients</module>
+    <module>inventory</module>
   </modules>
 
   <packaging>pom</packaging>

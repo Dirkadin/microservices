@@ -1,5 +1,7 @@
 package com.dirkadin.ordering;
 
+import com.dirkadin.clients.inventory.InventoryCheckResponse;
+import com.dirkadin.clients.inventory.InventoryClient;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class OrderingService {
 
+  private final InventoryClient inventoryClient;
   private OrderingRepository orderingRepository;
 
   public void placeOrder(OrderRequest orderRequest) {
@@ -18,7 +21,18 @@ public class OrderingService {
 
     //todo: validate request
     //todo: check if we have inventory
-    //todo: save to repository
+//    InventoryCheckResponse inventoryCheckResponse = inventoryClient.inventoryCheck(
+//        orderRequest.getProductId());
+
     orderingRepository.saveAndFlush(order);
+
+//    if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
+    if (0 >= order.getQuantity()) {
+      orderingRepository.saveAndFlush(order);
+    } else {
+      throw new OutOfStockException("Not enough inventory");
+    }
+
+
   }
 }

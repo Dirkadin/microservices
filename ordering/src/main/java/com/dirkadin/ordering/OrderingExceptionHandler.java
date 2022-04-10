@@ -20,4 +20,12 @@ public class OrderingExceptionHandler {
     });
     return errorMap;
   }
+
+  @ResponseStatus(HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(OutOfStockException.class)
+  public Map<String, String> handleOutOfStock(OutOfStockException ex) {
+    Map<String, String> errorMap = new HashMap<>();
+    errorMap.put("error", ex.getMessage());
+    return errorMap;
+  }
 }
