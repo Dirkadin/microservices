@@ -92,8 +92,7 @@ public class OrderingServiceTests {
 
     //When we place the order
     //Then an exception will be thrown
-    Exception exception = assertThrows(OutOfStockException.class, () -> {
-      orderingService.placeOrder(orderRequest);
-    });
+    Exception exception = assertThrows(OutOfStockException.class,
+        () -> orderingService.placeOrder(orderRequest));
   }
 }

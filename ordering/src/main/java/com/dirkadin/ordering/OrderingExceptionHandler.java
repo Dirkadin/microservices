@@ -15,9 +15,8 @@ public class OrderingExceptionHandler {
   @ExceptionHandler(MethodArgumentNotValidException.class)
   public Map<String, String> handleInvalidArgument(MethodArgumentNotValidException ex) {
     Map<String, String> errorMap = new HashMap<>();
-    ex.getBindingResult().getFieldErrors().forEach(error -> {
-      errorMap.put(error.getField(), error.getDefaultMessage());
-    });
+    ex.getBindingResult().getFieldErrors()
+        .forEach(error -> errorMap.put(error.getField(), error.getDefaultMessage()));
     return errorMap;
   }
 
