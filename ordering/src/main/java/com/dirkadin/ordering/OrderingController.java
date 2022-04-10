@@ -22,6 +22,6 @@ public class OrderingController {
   public ResponseEntity<OrderRequest> placeOrder(@RequestBody @Valid OrderRequest orderRequest) {
     log.info("new order received {}", orderRequest);
     orderingService.placeOrder(orderRequest);
-    return new ResponseEntity<>(orderRequest, HttpStatus.OK);
+    return new ResponseEntity<>(orderRequest, HttpStatus.CREATED);
   }
 }
