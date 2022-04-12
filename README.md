@@ -27,4 +27,4 @@ You should receive a 201 created back with the original payload.
 
 ### Notes:
 - Currently, the default behaviour is to drop all tables on exit and recreated them on startup. Do not expect data to persist.
-- The inventory service is not implemented yet and we have hard coded there to be only one of each item available. Any request with `quantity >= 2` will return a 400 bad request.
+- The inventory service randomly returns a quantity between 1 and 10.
