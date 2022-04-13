@@ -8,6 +8,7 @@ import static org.mockito.BDDMockito.when;
 
 import com.dirkadin.clients.inventory.InventoryCheckResponse;
 import com.dirkadin.clients.inventory.InventoryClient;
+import com.dirkadin.clients.inventory.ShippingClient;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -25,6 +26,9 @@ public class OrderingServiceTests {
   @Mock
   private InventoryClient inventoryClient;
 
+  @Mock
+  private ShippingClient shippingClient;
+
   @Captor
   private ArgumentCaptor<Order> orderArgumentCaptor;
 
@@ -34,7 +38,7 @@ public class OrderingServiceTests {
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.openMocks(this);
-    orderingService = new OrderingService(inventoryClient, orderingRepository);
+    orderingService = new OrderingService(inventoryClient, shippingClient, orderingRepository);
   }
 
   @Test

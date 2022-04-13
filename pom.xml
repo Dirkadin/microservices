@@ -68,6 +68,7 @@
     <module>eureka-server</module>
     <module>clients</module>
     <module>inventory</module>
+    <module>shipping</module>
   </modules>
 
   <packaging>pom</packaging>
