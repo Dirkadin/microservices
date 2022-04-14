@@ -69,6 +69,7 @@
     <module>clients</module>
     <module>inventory</module>
     <module>shipping</module>
+    <module>amqp</module>
   </modules>
 
   <packaging>pom</packaging>
