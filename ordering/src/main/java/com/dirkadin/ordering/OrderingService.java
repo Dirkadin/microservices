@@ -21,12 +21,8 @@ public class OrderingService {
         .quantity(orderRequest.getQuantity())
         .build();
 
-    //todo: validate request
-    //todo: check if we have inventory
     InventoryCheckResponse inventoryCheckResponse = inventoryClient.inventoryCheck(
         orderRequest.getProductId());
-
-    orderingRepository.saveAndFlush(order);
 
     if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
       order = orderingRepository.saveAndFlush(order);

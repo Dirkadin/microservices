@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import com.dirkadin.clients.inventory.InventoryCheckResponse;
 import com.dirkadin.clients.inventory.InventoryClient;
@@ -96,7 +97,9 @@ public class OrderingServiceTests {
 
     //When we place the order
     //Then an exception will be thrown
-    Exception exception = assertThrows(OutOfStockException.class,
+    assertThrows(OutOfStockException.class,
         () -> orderingService.placeOrder(orderRequest));
+    //Then repository will not be called
+    verifyNoInteractions(orderingRepository);
   }
 }
