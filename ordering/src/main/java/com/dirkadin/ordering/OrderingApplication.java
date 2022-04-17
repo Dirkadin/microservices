@@ -8,8 +8,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.PropertySources;
 
 @EnableEurekaClient
-@SpringBootApplication
 @EnableFeignClients(basePackages = "com.dirkadin.clients")
+@SpringBootApplication(scanBasePackages = {"com.dirkadin.ordering", "com.dirkadin.amqp"})
 @PropertySources({@PropertySource("classpath:clients-${spring.profiles.active}.properties")})
 public class OrderingApplication {
 
