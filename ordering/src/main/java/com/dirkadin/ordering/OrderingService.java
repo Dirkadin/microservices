@@ -25,7 +25,7 @@ public class OrderingService {
         orderRequest.getProductId());
 
     if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
-      order = orderingRepository.saveAndFlush(order);
+      orderingRepository.saveAndFlush(order);
       mqProducer.publish(createOrderRequest(order),
           "internal.exchange",
           "internal.shipping.routing-key");
