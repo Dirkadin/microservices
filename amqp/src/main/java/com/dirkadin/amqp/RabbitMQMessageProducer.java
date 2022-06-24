@@ -13,5 +13,4 @@ public class RabbitMQMessageProducer {
   public void publish(Object payload, String exchange, String routingKey) {
     amqpTemplate.convertAndSend(exchange, routingKey, payload);
   }
-
 }
