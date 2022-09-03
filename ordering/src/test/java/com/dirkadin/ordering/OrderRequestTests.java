@@ -23,48 +23,61 @@ public class OrderRequestTests {
 
   @Test
   public void emailIsInvalid() {
-    //Given an order request
+    // Given an order request
     OrderRequest orderRequest = new OrderRequest(1, 1, "foo");
-    //When
-    //Then there is one validation error stating "email is not valid"
+    // When
+    // Then there is one validation error stating "email is not valid"
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
     assertFalse(validator.validate(orderRequest).isEmpty());
-    assertTrue(validationErrors.stream().anyMatch(orderRequestConstraintViolation ->
-        orderRequestConstraintViolation.getMessage().equals("emailAddress is not valid")));
+    assertTrue(
+        validationErrors.stream()
+            .anyMatch(
+                orderRequestConstraintViolation ->
+                    orderRequestConstraintViolation
+                        .getMessage()
+                        .equals("emailAddress is not valid")));
   }
 
   @Test
   public void emailsIsNull() {
-    //Given an order request
+    // Given an order request
     OrderRequest orderRequest = new OrderRequest(1, 1, null);
-    //When
-    //Then there is one validation error stating "emailAddress cannot be empty or null"
+    // When
+    // Then there is one validation error stating "emailAddress cannot be empty or null"
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
     assertFalse(validator.validate(orderRequest).isEmpty());
-    assertTrue(validationErrors.stream().anyMatch(orderRequestConstraintViolation ->
-        orderRequestConstraintViolation.getMessage()
-            .equals("emailAddress cannot be empty or null")));
+    assertTrue(
+        validationErrors.stream()
+            .anyMatch(
+                orderRequestConstraintViolation ->
+                    orderRequestConstraintViolation
+                        .getMessage()
+                        .equals("emailAddress cannot be empty or null")));
   }
 
   @Test
   public void emailIsEmpty() {
-    //Given an order request
+    // Given an order request
     OrderRequest orderRequest = new OrderRequest(1, 1, "");
-    //When
-    //Then there is one validation error stating "emailAddress cannot be empty or null"
+    // When
+    // Then there is one validation error stating "emailAddress cannot be empty or null"
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
     assertFalse(validator.validate(orderRequest).isEmpty());
-    assertTrue(validationErrors.stream().anyMatch(orderRequestConstraintViolation ->
-        orderRequestConstraintViolation.getMessage()
-            .equals("emailAddress cannot be empty or null")));
+    assertTrue(
+        validationErrors.stream()
+            .anyMatch(
+                orderRequestConstraintViolation ->
+                    orderRequestConstraintViolation
+                        .getMessage()
+                        .equals("emailAddress cannot be empty or null")));
   }
 
   @Test
   public void happyPath() {
-    //Given an order request
+    // Given an order request
     OrderRequest orderRequest = new OrderRequest(1, 1, "foo@bar.com");
-    //When
-    //Then there are no validation errors
+    // When
+    // Then there are no validation errors
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
     assertTrue(validator.validate(orderRequest).isEmpty());
   }
