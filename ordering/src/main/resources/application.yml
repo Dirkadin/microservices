@@ -24,3 +24,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka
     enabled: true
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    ordering: ordering.queue
+  routing-keys:
+    internal-ordering: internal.ordering.routing-keys
