@@ -2,10 +2,13 @@
 Project demonstrating microservices
 
 ## Ordering service
-The ordering service allows you to place an order with just with a post request.
+The ordering service allows you to place orders in the system. It will check inventory availability and send paid orders to the shipping queue.
 
 ## Inventory Service
 The inventory service checks existing inventory if a product is currently in our inventory.
+
+## Shipping Service
+The shipping service takes shipping requests off the shipping queue and ships them.
 
 ## Running the project
 1. In the root directory run `docker-compose up`
