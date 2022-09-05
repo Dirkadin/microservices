@@ -1,4 +1,4 @@
-package com.dirkadin.ordering;
+package com.dirkadin.shipping;
 
 import lombok.Getter;
 import org.springframework.amqp.core.Binding;
@@ -11,16 +11,16 @@ import org.springframework.context.annotation.Configuration;
 
 @Getter
 @Configuration
-public class OrderingConfig {
+public class ShippingConfig {
 
   @Value("${rabbitmq.exchanges.internal}")
   private String internalExchange;
 
-  @Value("${rabbitmq.queues.ordering}")
-  private String orderingQueue;
+  @Value("${rabbitmq.queues.shipping}")
+  private String shippingQueue;
 
-  @Value(("${rabbitmq.routing-keys.internal-ordering"))
-  private String internalOrderingRoutingKey;
+  @Value(("${rabbitmq.routing-keys.internal-shipping}"))
+  private String internalShippingRoutingKey;
 
   @Bean
   public TopicExchange internalTopicExchange() {
@@ -28,15 +28,13 @@ public class OrderingConfig {
   }
 
   @Bean
-  public Queue orderingQueue() {
-    return new Queue(this.orderingQueue);
+  public Queue shippingQueue() {
+    return new Queue(this.shippingQueue);
   }
 
   @Bean
-  public Binding internalToOrderingBinding() {
-    return BindingBuilder
-        .bind(orderingQueue())
-        .to(internalTopicExchange())
-        .with(this.internalOrderingRoutingKey);
+  public Binding internalToShippingBinding() {
+    return BindingBuilder.bind(shippingQueue()).to(internalTopicExchange())
+        .with(this.internalShippingRoutingKey);
   }
 }
