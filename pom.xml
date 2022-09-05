@@ -16,6 +16,7 @@
     <module>inventory</module>
     <module>shipping</module>
     <module>amqp</module>
+    <module>api-gateway</module>
   </modules>
 
   <properties>
@@ -31,6 +32,8 @@
       <plugins>
         <plugin>
           <artifactId>spring-boot-maven-plugin</artifactId>
+          <groupId>org.springframework.boot</groupId>
+          <version>${spring.boot.maven.plugin.version}</version>
           <executions>
             <execution>
               <goals>
@@ -38,8 +41,6 @@
               </goals>
             </execution>
           </executions>
-          <groupId>org.springframework.boot</groupId>
-          <version>${spring.boot.maven.plugin.version}</version>
         </plugin>
       </plugins>
     </pluginManagement>
