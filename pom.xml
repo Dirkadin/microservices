@@ -53,6 +53,33 @@
           <target>17</target>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <configuration>
+          <configLocation>google_checks.xml</configLocation>
+          <consoleOutput>true</consoleOutput>
+          <encoding>UTF-8</encoding>
+          <sourceDirectories>
+            <sourceDirectory>${project.build.sourceDirectory}</sourceDirectory>
+          </sourceDirectories>
+          <suppressionsFileExpression>
+            checkstyle.suppressions.file
+          </suppressionsFileExpression>
+          <suppressionsLocation>
+            ${project.parent.basedir}\config\checkstyle\checkstyle-suppressions.xml
+          </suppressionsLocation>
+          <violationSeverity>warning</violationSeverity>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <version>3.1.0</version>
+      </plugin>
     </plugins>
   </build>
 
