@@ -1,0 +1,36 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: shipping
+  datasource:
+    password: password
+    url: jdbc:postgresql://postgres:5432/shipping
+    username: dirkadin
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+  zipkin:
+    base-url: http://zipkin:9411
+  rabbitmq:
+    addresses: rabbitmq:5672
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka
+    enabled: true
+
+rabbitmq:
+  exchanges:
+    internal: internal.exchange
+  queues:
+    shipping: shipping.queue
+  routing-keys:
+    internal-shipping: internal.shipping.routing-key
