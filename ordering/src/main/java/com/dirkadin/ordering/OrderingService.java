@@ -3,6 +3,7 @@ package com.dirkadin.ordering;
 import com.dirkadin.amqp.RabbitMQMessageProducer;
 import com.dirkadin.clients.inventory.InventoryCheckResponse;
 import com.dirkadin.clients.inventory.InventoryClient;
+import com.dirkadin.clients.inventory.ShippingRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,8 @@ import org.springframework.stereotype.Service;
 public class OrderingService {
 
   private final InventoryClient inventoryClient;
+  private final RabbitMQMessageProducer mqProducer;
   private OrderingRepository orderingRepository;
-  private RabbitMQMessageProducer mqProducer;
 
   public void placeOrder(OrderRequest orderRequest) {
     Order order = Order.builder()
@@ -21,12 +22,18 @@ public class OrderingService {
         .quantity(orderRequest.getQuantity())
         .build();
 
-    InventoryCheckResponse inventoryCheckResponse =
-        inventoryClient.inventoryCheck(orderRequest.getProductId());
+    InventoryCheckResponse inventoryCheckResponse;
+    try {
+      inventoryCheckResponse =
+          inventoryClient.inventoryCheck(orderRequest.getProductId());
+    } catch (Exception e) {
+      inventoryCheckResponse = new InventoryCheckResponse(0);
+    }
+
 
     if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
       orderingRepository.saveAndFlush(order);
-      mqProducer.publish(createOrderRequest(order),
+      mqProducer.publish(createShippingRequest(order),
           "internal.exchange",
           "internal.shipping.routing-key");
     } else {
@@ -34,11 +41,7 @@ public class OrderingService {
     }
   }
 
-  private Object createOrderRequest(Order order) {
-    return OrderRequest.builder()
-        .productId(order.getProductId())
-        .quantity(order.getQuantity())
-        .emailAddress(order.getEmailAddress())
-        .build();
+  private Object createShippingRequest(Order order) {
+    return new ShippingRequest(order.getEmailAddress());
   }
 }
