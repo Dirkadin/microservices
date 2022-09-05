@@ -8,7 +8,7 @@ import static org.mockito.BDDMockito.then;
 import static org.mockito.BDDMockito.when;
 import static org.mockito.Mockito.verifyNoInteractions;
 
-import com.dirkadin.amqp.RabbitMQMessageProducer;
+import com.dirkadin.amqp.RabbitMqMessageProducer;
 import com.dirkadin.clients.inventory.InventoryCheckResponse;
 import com.dirkadin.clients.inventory.InventoryClient;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +29,7 @@ public class OrderingServiceTests {
   private InventoryClient inventoryClient;
 
   @Mock
-  private RabbitMQMessageProducer rabbitMqMessageProducer;
+  private RabbitMqMessageProducer rabbitMqMessageProducer;
 
   @Captor
   private ArgumentCaptor<Order> orderArgumentCaptor;
@@ -44,7 +44,7 @@ public class OrderingServiceTests {
   public void setUp() {
     MockitoAnnotations.openMocks(this);
     orderingService =
-        new OrderingService(inventoryClient, orderingRepository, rabbitMqMessageProducer);
+        new OrderingService(inventoryClient, rabbitMqMessageProducer, orderingRepository);
   }
 
   @Test
