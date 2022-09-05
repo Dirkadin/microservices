@@ -11,13 +11,14 @@ The inventory service checks existing inventory if a product is currently in our
 The shipping service takes shipping requests off the shipping queue and ships them.
 
 ## Running the project
+### Locally hosted
 1. In the root directory run `docker-compose up`
-2. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password` (You can change these in the config files of the services if you wish).
-3. Inside the database created the `ordering` database
-4. Start the eureka server
-5. Start the ordering service with the included intellij run config.
-6. Start the inventory service with a default config
-7. Using postman (or any other similar program) to send a request to `localhost:8080/api/v1/order/placeorder` with the body
+1. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password` (You can change these in the config files of the services if you wish).
+1. Inside the database created the `ordering` database
+1. Start the eureka server
+1. Start the ordering service with the included intellij run config.
+1. Start the inventory service with a default config
+1. Using postman (or any other similar program) to send a request to `localhost:8083/api/v1/order/placeorder` with the body
 
 ```json
 {
@@ -26,6 +27,21 @@ The shipping service takes shipping requests off the shipping queue and ships th
     "emailAddress": "foo@bar.com"
 }
 ```
+
+### Using docker only
+1. In the root directory run `docker-compose up`
+1. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password`. You can change these in the config files of the services if you wish, but you will need to modify the docker config files.
+1. Inside the database created the `ordering` database
+1. Using postman (or any other similar program) to send a request to `localhost:8083/api/v1/order/placeorder` with the body
+
+```json
+{
+    "productId": 1,
+    "quantity": 1,
+    "emailAddress": "foo@bar.com"
+}
+```
+
 
 You should receive a 201 created back with the original payload.
 
