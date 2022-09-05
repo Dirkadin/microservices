@@ -1,6 +1,6 @@
 package com.dirkadin.ordering;
 
-import com.dirkadin.amqp.RabbitMQMessageProducer;
+import com.dirkadin.amqp.RabbitMqMessageProducer;
 import com.dirkadin.clients.inventory.InventoryCheckResponse;
 import com.dirkadin.clients.inventory.InventoryClient;
 import com.dirkadin.clients.inventory.ShippingRequest;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class OrderingService {
 
   private final InventoryClient inventoryClient;
-  private final RabbitMQMessageProducer mqProducer;
+  private final RabbitMqMessageProducer mqProducer;
   private OrderingRepository orderingRepository;
 
   public void placeOrder(OrderRequest orderRequest) {

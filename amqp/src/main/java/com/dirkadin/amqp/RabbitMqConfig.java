@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @AllArgsConstructor
-public class RabbitMQConfig {
+public class RabbitMqConfig {
 
   private final ConnectionFactory connectionFactory;
 

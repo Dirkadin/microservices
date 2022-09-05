@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @AllArgsConstructor
-public class RabbitMQMessageConsumer {
+public class RabbitMqMessageConsumer {
 
   private final AmqpTemplate amqpTemplate;
 
