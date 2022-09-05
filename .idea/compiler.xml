@@ -16,8 +16,5 @@
         <module name="eureka-server" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="api-gateway" target="17" />
-    </bytecodeTargetLevel>
   </component>
 </project>
