@@ -79,6 +79,6 @@ public class OrderRequestTests {
     // When
     // Then there are no validation errors
     Set<ConstraintViolation<OrderRequest>> validationErrors = validator.validate(orderRequest);
-    assertTrue(validator.validate(orderRequest).isEmpty());
+    assertTrue(validator.validate(validationErrors).isEmpty());
   }
 }
