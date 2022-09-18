@@ -14,11 +14,12 @@ The shipping service takes shipping requests off the shipping queue and ships th
 ### Locally hosted
 1. In the root directory run `docker-compose up`
 1. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password` (You can change these in the config files of the services if you wish).
-1. Inside the database created the `ordering` database
+1. Inside the database create the `ordering` database and `shipping` database.
 1. Start the eureka server
+1. Start the API Gateway
 1. Start the ordering service with the included intellij run config.
 1. Start the inventory service with a default config
-1. Using postman (or any other similar program) to send a request to `localhost:8083/api/v1/order/placeorder` with the body
+1. Using postman (or any other similar program) to send a POST request to `localhost:8083/api/v1/order/placeorder` with the body
 
 ```json
 {
