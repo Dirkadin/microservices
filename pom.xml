@@ -26,6 +26,7 @@
     <spring.cloud-version>2020.0.3</spring.cloud-version>
     <spring.boot.maven.plugin.version>2.6.4</spring.boot.maven.plugin.version>
     <image>dirkadin/${project.artifactId}:${project.version}</image>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
   <build>
