@@ -43,6 +43,16 @@ The shipping service takes shipping requests off the shipping queue and ships th
 }
 ```
 
+### Using Minikube
+1. Start Minikube`minikube start --memory=4G`
+2. Move into dev folder `cd /kubernetes/dev`
+3. Apply bootstrap services `kubectl apply -R -f bootstrap/`
+4. From the terminal `kubectl exec -it postgres-0 -- psql -U dirkadin`
+5. Now inside the postgres container:
+   1. `create database ordering;`
+   2. `create database shipping;`
+   3. `exit`
+
 
 You should receive a 201 created back with the original payload.
 
