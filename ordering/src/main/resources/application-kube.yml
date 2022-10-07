@@ -1,9 +1,8 @@
 server:
-  port: 8081
-
+  port: 8080
 spring:
   application:
-    name: inventory
+    name: ordering
   datasource:
     password: password
     url: jdbc:postgresql://postgres:5432/ordering
@@ -18,9 +17,5 @@ spring:
     show-sql: true
   zipkin:
     base-url: http://zipkin:9411
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka
-    enabled: false
+  rabbitmq:
+    addresses: rabbitmq:5672

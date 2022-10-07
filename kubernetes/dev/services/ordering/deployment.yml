@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ordering
+  labels:
+    app: ordering
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: ordering
+      labels:
+        app: ordering
+    spec:
+      containers:
+        - name: customer
+          image: dirkadin/ordering:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: kube
+      restartPolicy: Always
+  selector:
+    matchLabels:
+      app: ordering

@@ -1,6 +1,5 @@
 server:
   port: 8081
-
 spring:
   application:
     name: inventory
@@ -18,9 +17,3 @@ spring:
     show-sql: true
   zipkin:
     base-url: http://zipkin:9411
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://eureka-server:8761/eureka
-    enabled: false
