@@ -61,10 +61,10 @@ You should receive a 201 created back with the original payload.
 - The inventory service randomly returns a quantity between 1 and 10.
 
 # TODO
-~~1. Create small microservices~~
-~~1. Connect to eureka~~
-~~1. Add tracing~~
-~~1. Add API Gateway~~
-~~1. Containerize all services~~
-1. Move services to k8s
+1. Create small microservices ✅️
+1. Connect to eureka✅ ✅️
+1. Add tracing ✅️
+1. Add API Gateway ✅️
+1. Containerize all services ✅️
+1. Move services to k8s ✅️
 1. Deploy somewhere?
