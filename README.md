@@ -74,6 +74,7 @@ The shipping service takes shipping requests off the shipping queue and ships th
 4. Once deployment is finished, run `kubectl -n kubernetes-dashboard create token admin-user`
 5. Copy the token
 6. Navigate to localhost:8081 and authenticate with the token
+7. If something is broken, check here for help `https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/`
 
 ### Notes:
 - Currently, the default behaviour is to drop all tables on exit and recreated them on startup. Do not expect data to persist.
