@@ -67,6 +67,14 @@ The shipping service takes shipping requests off the shipping queue and ships th
    ```
 10. Send the request and if everything is set up correctly, you will get a 201 response back.
 
+#### Using the Kubernetes Dashboard
+1. Run `kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.6.1/aio/deploy/recommended.yaml`
+2. Navigate to root/kubernetes/dev
+3. Run `kubectl apply -R -f dashboard/` to create the admin-user
+4. Once deployment is finished, run `kubectl -n kubernetes-dashboard create token admin-user`
+5. Copy the token
+6. Navigate to localhost:8081 and authenticate with the token
+
 ### Notes:
 - Currently, the default behaviour is to drop all tables on exit and recreated them on startup. Do not expect data to persist.
 - The inventory service randomly returns a quantity between 1 and 10.
