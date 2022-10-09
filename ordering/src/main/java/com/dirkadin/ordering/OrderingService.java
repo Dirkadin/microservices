@@ -16,22 +16,9 @@ public class OrderingService {
   private OrderingRepository orderingRepository;
 
   public void placeOrder(OrderRequest orderRequest) {
-    Order order = Order.builder()
-        .emailAddress(orderRequest.getEmailAddress())
-        .productId(orderRequest.getProductId())
-        .quantity(orderRequest.getQuantity())
-        .build();
+    Order order = creatOrder(orderRequest);
 
-    InventoryCheckResponse inventoryCheckResponse;
-    try {
-      inventoryCheckResponse =
-          inventoryClient.inventoryCheck(orderRequest.getProductId());
-    } catch (Exception e) {
-      inventoryCheckResponse = new InventoryCheckResponse(0);
-    }
-
-
-    if (inventoryCheckResponse.getQuantity() >= order.getQuantity()) {
+    if (checkInventory(order)) {
       orderingRepository.saveAndFlush(order);
       mqProducer.publish(createShippingRequest(order),
           "internal.exchange",
@@ -39,6 +26,25 @@ public class OrderingService {
     } else {
       throw new OutOfStockException("Not enough inventory");
     }
+  }
+
+  private boolean checkInventory(Order order) {
+    InventoryCheckResponse inventoryCheckResponse;
+    try {
+      inventoryCheckResponse =
+          inventoryClient.inventoryCheck(order.getProductId());
+    } catch (Exception e) {
+      inventoryCheckResponse = new InventoryCheckResponse(0);
+    }
+    return inventoryCheckResponse.getQuantity() >= order.getQuantity();
+  }
+
+  private static Order creatOrder(OrderRequest orderRequest) {
+    return Order.builder()
+        .emailAddress(orderRequest.getEmailAddress())
+        .productId(orderRequest.getProductId())
+        .quantity(orderRequest.getQuantity())
+        .build();
   }
 
   private Object createShippingRequest(Order order) {
