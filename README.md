@@ -13,13 +13,13 @@ The shipping service takes shipping requests off the shipping queue and ships th
 ## Running the project
 ### Locally hosted
 1. In the root directory run `docker-compose up`
-1. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password` (You can change these in the config files of the services if you wish).
-1. Inside the database create the `ordering` database and `shipping` database.
-1. Start the eureka server
-1. Start the API Gateway
-1. Start the ordering service with the included intellij run config.
-1. Start the inventory service with a default config
-1. Using postman (or any other similar program) to send a POST request to `localhost:8083/api/v1/order/placeorder` with the body
+2. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password` (You can change these in the config files of the services if you wish).
+3. Inside the database create the `ordering` database and `shipping` database.
+4. Start the eureka server
+5. Start the API Gateway
+6. Start the ordering service with the included intellij run config.
+7. Start the inventory service with a default config
+8. Using postman (or any other similar program) to send a POST request to `localhost:8083/api/v1/order/placeorder` with the body
 
 ```json
 {
@@ -28,22 +28,24 @@ The shipping service takes shipping requests off the shipping queue and ships th
     "emailAddress": "foo@bar.com"
 }
 ```
+9. Send the request and if everything is set up correctly, you will get a 201 response back.
 
 ### Using docker only
 1. In the root directory run `docker-compose up`
-1. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password`. You can change these in the config files of the services if you wish, but you will need to modify the docker config files.
-1. Inside the database created the `ordering` database
-1. Using postman (or any other similar program) to send a request to `localhost:8083/api/v1/order/placeorder` with the body
+2. Navigate to localhost:5050 and create a new postgres server with username `dirkadin` and password `password`. You can change these in the config files of the services if you wish, but you will need to modify the docker config files.
+3. Inside the database created the `ordering` database
+4. Using postman (or any other similar program) to send a request to `localhost:8083/api/v1/order/placeorder` with the body
 
-```json
-{
-    "productId": 1,
-    "quantity": 1,
-    "emailAddress": "foo@bar.com"
-}
-```
+   ```json
+   {
+       "productId": 1,
+       "quantity": 1,
+       "emailAddress": "foo@bar.com"
+   }
+   ```
+5. Send the request and if everything is set up correctly, you will get a 201 response back.
 
-### Using Minikube
+### Using Minikube/Kubernetes
 1. Start Minikube`minikube start --memory=4G`
 2. Move into dev folder `cd /kubernetes/dev`
 3. Apply bootstrap services `kubectl apply -R -f bootstrap/`
@@ -52,9 +54,18 @@ The shipping service takes shipping requests off the shipping queue and ships th
    1. `create database ordering;`
    2. `create database shipping;`
    3. `exit`
-
-
-You should receive a 201 created back with the original payload.
+6. Deploy services `kubectl apply -R -f services/`
+7. Get ordering service URL `minikube serivce --url ordering`
+8. In postman, create a post request to the url from the previous step. `<url>/api/v1/order/placeorder`
+9. Add the body:
+   ```json
+   {
+    "productId": 1,
+    "quantity": 1,
+    "emailAddress": "foo@bar.com"
+   }
+   ```
+10. Send the request and if everything is set up correctly, you will get a 201 response back.
 
 ### Notes:
 - Currently, the default behaviour is to drop all tables on exit and recreated them on startup. Do not expect data to persist.
