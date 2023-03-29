@@ -76,6 +76,9 @@ The shipping service takes shipping requests off the shipping queue and ships th
 6. Navigate to localhost:8081 and authenticate with the token
 7. If something is broken, check here for help `https://kubernetes.io/docs/tasks/access-application-cluster/web-ui-dashboard/`
 
+### Using Github Codespaces
+- TODO
+
 ### Notes:
 - Currently, the default behaviour is to drop all tables on exit and recreated them on startup. Do not expect data to persist.
 - The inventory service randomly returns a quantity between 1 and 10.
